@@ -4,27 +4,33 @@ import Screen from "./app/components/Screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
-const Link = () => {
-  const navigation = useNavigation();
-  return (
-    <Button
-      title="Go to the TweetsDetails"
-      onPress={() => navigation.navigate("TweetsDetails")}
-    />
-  );
-};
+// const Link = () => {
+//   const navigation = useNavigation();
+//   return (
+//     <Button
+//       title="Go to the TweetsDetails"
+//       onPress={() => navigation.navigate("TweetsDetails")}
+//     />
+//   );
+// };
 
 // Tweets Screen
 const Tweets = ({ navigation }) => (
   <Screen>
     <Text>Tweets</Text>
-    <Link />
+    <Button
+      title="Click"
+      onPress={() => {
+        navigation.navigate("TweetsDetails", { id: 1 });
+      }}
+    />
   </Screen>
 );
 
-const TweetsDetails = () => (
+const TweetsDetails = ({ route }) => (
+  // if in the child component then use route hook
   <Screen>
-    <Text>Tweets Details</Text>
+    <Text>Tweets Details {route.params.id}</Text>
   </Screen>
 );
 
