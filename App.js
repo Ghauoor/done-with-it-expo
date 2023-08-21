@@ -1,12 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-
+import React from "react";
+import { View, StyleSheet, Text } from "react-native";
 import Screen from "./app/components/Screen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
 
-import ImageInputList from "./app/components/ImageInputList";
-import ListingEditScreen from "./app/screens/ListingEditScreen";
+const Tweets = () => (
+  <Screen>
+    <Text>Tweets</Text>
+  </Screen>
+);
 
-export default function App() {
-  return <ListingEditScreen />;
-}
+const TweetsDetails = () => (
+  <Screen>
+    <Text>Tweets Details</Text>
+  </Screen>
+);
+
+const Stack = createNativeStackNavigator();
+const StackNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Tweets" component={Tweets} />
+    <Stack.Screen name="TweetsDetails" component={TweetsDetails} />
+  </Stack.Navigator>
+);
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
+  );
+};
+
+const styles = StyleSheet.create({});
+
+export default App;
