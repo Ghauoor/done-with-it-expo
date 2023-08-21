@@ -25,7 +25,7 @@ const Tweets = ({ navigation }) => (
     <Button
       title="Click"
       onPress={() => {
-        navigation.navigate("TweetsDetails");
+        navigation.navigate("TweetsDetails", { id: 1 });
       }}
     />
   </Screen>
@@ -51,11 +51,18 @@ const StackNavigator = () => (
       },
     }}
   >
-    <Stack.Screen name="Tweets" component={Tweets} />
+    <Stack.Screen
+      name="Tweets"
+      component={Tweets}
+      options={{ headerShown: false }}
+    />
     <Stack.Screen
       name="TweetsDetails"
       component={TweetsDetails}
-      options={({ route: { params } }) => ({ title: params.id.toString() })}
+      options={({ route: { params } }) => ({
+        title: params.id.toString(),
+        headerShown: false,
+      })}
     />
   </Stack.Navigator>
 );
@@ -78,7 +85,7 @@ const TabNavigator = () => (
   >
     <Tab.Screen
       name="Feed"
-      component={Tweets}
+      component={StackNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (
           <Icons name="home" size={size} color={color} />
