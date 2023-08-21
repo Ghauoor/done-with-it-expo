@@ -2,7 +2,8 @@ import React from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
 import Screen from "./app/components/Screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 
 // const Link = () => {
 //   const navigation = useNavigation();
@@ -21,7 +22,7 @@ const Tweets = ({ navigation }) => (
     <Button
       title="Click"
       onPress={() => {
-        navigation.navigate("TweetsDetails", { id: 1 });
+        navigation.navigate("TweetsDetails");
       }}
     />
   </Screen>
@@ -55,11 +56,27 @@ const StackNavigator = () => (
     />
   </Stack.Navigator>
 );
+const Account = () => (
+  <Screen>
+    <Text>Account Screen</Text>
+  </Screen>
+);
+
+// Bottom navigation
+const Tab = createBottomTabNavigator();
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Feed" component={Tweets} />
+      <Tab.Screen name="Account" component={Account} />
+    </Tab.Navigator>
+  );
+};
 
 const App = () => {
   return (
     <NavigationContainer>
-      <StackNavigator />
+      <TabNavigator />
     </NavigationContainer>
   );
 };
