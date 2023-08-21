@@ -7,6 +7,8 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import Icons from "@expo/vector-icons/MaterialCommunityIcons";
 import colors from "./app/config/colors";
+import AuthNavigator from "./app/navigations/AuthNavigator";
+import navigationTheme from "./app/navigations/navigationTheme";
 
 // const Link = () => {
 //   const navigation = useNavigation();
@@ -106,8 +108,8 @@ const TabNavigator = () => (
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <TabNavigator />
+    <NavigationContainer theme={navigationTheme}>
+      <AuthNavigator />
     </NavigationContainer>
   );
 };
