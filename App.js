@@ -1,12 +1,16 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Button } from "react-native";
 import Screen from "./app/components/Screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-const Tweets = () => (
+const Tweets = ({ navigation }) => (
   <Screen>
     <Text>Tweets</Text>
+    <Button
+      title="View Tweets"
+      onPress={() => navigation.navigate("TweetsDetails")}
+    />
   </Screen>
 );
 
