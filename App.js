@@ -9,6 +9,7 @@ import Icons from "@expo/vector-icons/MaterialCommunityIcons";
 import colors from "./app/config/colors";
 import AuthNavigator from "./app/navigations/AuthNavigator";
 import navigationTheme from "./app/navigations/navigationTheme";
+import AppNavigator from "./app/navigations/AppNavigator";
 
 // const Link = () => {
 //   const navigation = useNavigation();
@@ -109,7 +110,7 @@ const TabNavigator = () => (
 const App = () => {
   return (
     <NavigationContainer theme={navigationTheme}>
-      <AuthNavigator />
+      <AppNavigator />
     </NavigationContainer>
   );
 };
