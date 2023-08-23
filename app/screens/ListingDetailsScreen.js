@@ -10,7 +10,7 @@ function ListingDetailsScreen({ route }) {
 
   return (
     <View>
-      <Image style={styles.image} source={listing.image} />
+      <Image style={styles.image} source={{ uri: listing.images[0].url }} />
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{listing.title}</Text>
         <Text style={styles.price}>${listing.price}</Text>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 300,
-    resizeMode: "contain",
+    //resizeMode: "stretch",
   },
   price: {
     color: colors.secondary,
