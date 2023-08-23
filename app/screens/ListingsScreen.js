@@ -8,21 +8,20 @@ import colors from "../config/colors";
 import Route from "../navigations/Route";
 import Screen from "../components/Screen";
 import AppText from "../components/Text";
+import ActivityIndicator from "../components/ActivityIndicator";
+import useApi from "../hooks/useApi";
 
 function ListingsScreen({ navigation }) {
-  const [listings, setListings] = useState([]);
-  const [error, setError] = useState(false);
-
+  const {
+    data: listings,
+    error,
+    loading,
+    request: loadListings,
+  } = useApi(listingApi.getListings);
   useEffect(() => {
     loadListings();
   }, []);
-  const loadListings = async () => {
-    const response = await listingApi.getListings();
-    if (!response.ok) return setError(true);
 
-    setError(false);
-    setListings(response.data);
-  };
   return (
     <Screen style={styles.screen}>
       {error && (
@@ -31,6 +30,7 @@ function ListingsScreen({ navigation }) {
           <Button title="Retry" onPress={loadListings} />
         </>
       )}
+      <ActivityIndicator visible={loading} />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={listings}
