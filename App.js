@@ -1,118 +1,16 @@
 import React from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
-import Screen from "./app/components/Screen";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
-import colors from "./app/config/colors";
-import AuthNavigator from "./app/navigations/AuthNavigator";
-import navigationTheme from "./app/navigations/navigationTheme";
-import AppNavigator from "./app/navigations/AppNavigator";
-
-// const Link = () => {
-//   const navigation = useNavigation();
-//   return (
-//     <Button
-//       title="Go to the TweetsDetails"
-//       onPress={() => navigation.navigate("TweetsDetails")}
-//     />
-//   );
-// };
-
-// Tweets Screen
-const Tweets = ({ navigation }) => (
-  <Screen>
-    <Text>Tweets</Text>
-    <Button
-      title="Click"
-      onPress={() => {
-        navigation.navigate("TweetsDetails", { id: 1 });
-      }}
-    />
-  </Screen>
-);
-
-const TweetsDetails = ({ route }) => (
-  // if in the child component then use route hook
-  <Screen>
-    <Text>Tweets Details {route.params.id}</Text>
-  </Screen>
-);
-
-const Stack = createNativeStackNavigator();
-const StackNavigator = () => (
-  <Stack.Navigator
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: "#f4511e",
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        fontWeight: "bold",
-      },
-    }}
-  >
-    <Stack.Screen
-      name="Tweets"
-      component={Tweets}
-      options={{ headerShown: false }}
-    />
-    <Stack.Screen
-      name="TweetsDetails"
-      component={TweetsDetails}
-      options={({ route: { params } }) => ({
-        title: params.id.toString(),
-        headerShown: false,
-      })}
-    />
-  </Stack.Navigator>
-);
-const Account = () => (
-  <Screen>
-    <Text>Account Screen</Text>
-  </Screen>
-);
-
-// Bottom navigation
-const Tab = createBottomTabNavigator();
-const TabNavigator = () => (
-  <Tab.Navigator
-    tabBarOptions={{
-      activeBackgroundColor: "tomato",
-      activeTintColor: "white",
-      inactiveBackgroundColor: "#eee",
-      inactiveTintColor: "#111",
-    }}
-  >
-    <Tab.Screen
-      name="Feed"
-      component={StackNavigator}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <Icons name="home" size={size} color={color} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Account"
-      component={Account}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <Icons name="account" size={size} color={color} />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-);
+import { View, StyleSheet } from "react-native";
+import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
 
 const App = () => {
-  return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+  //componentDidMount
+  const unsubscribe = NetInfo.addEventListener((netInfo) =>
+    console.log(netInfo)
   );
+
+  //ComponentWillMount
+  unsubscribe();
+  return <View></View>;
 };
 
 const styles = StyleSheet.create({});
