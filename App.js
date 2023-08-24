@@ -1,22 +1,13 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NavigationContainer } from "@react-navigation/native";
 
-const App = () => {
-  const demo = async () => {
-    try {
-      await AsyncStorage.setItem("person", JSON.stringify({ id: 1 }));
-      const value = await AsyncStorage.getItem("person");
-      const person = JSON.parse(value);
-      console.log(person);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+import navigationTheme from "./app/navigations/navigationTheme";
+import AppNavigator from "./app/navigations/AppNavigator";
 
-  demo();
-};
-
-const styles = StyleSheet.create({});
-
-export default App;
+export default function App() {
+  return (
+    <NavigationContainer theme={navigationTheme}>
+      <AppNavigator />
+    </NavigationContainer>
+  );
+}
