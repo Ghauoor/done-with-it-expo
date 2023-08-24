@@ -1,16 +1,19 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
 
 const App = () => {
-  //componentDidMount
-  const unsubscribe = NetInfo.addEventListener((netInfo) =>
-    console.log(netInfo)
-  );
+  const netInfo = useNetInfo();
 
-  //ComponentWillMount
-  unsubscribe();
-  return <View></View>;
+  return netInfo.isInternetReachable ? (
+    <View style={{ padding: 44 }}>
+      <Text>Internet is connected</Text>
+    </View>
+  ) : (
+    <View>
+      <Text>Internet is not connected</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({});
