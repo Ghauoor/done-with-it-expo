@@ -2,7 +2,8 @@ import { create } from "apisauce";
 import cache from "../utility/cache";
 
 const apiClient = create({
-  baseURL: "http://192.168.1.6:9000/api/",
+  //** Have to change it with latest ip4 address */
+  baseURL: "http://192.168.1.2:9000/api/",
 });
 
 const get = apiClient.get;
